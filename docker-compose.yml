@@ -1,0 +1,13 @@
+services:
+  bot:
+    build: .
+    container_name: tg-ai-support-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./knowledge:/app/knowledge:ro
+      - ./.fastembed_cache:/app/.fastembed_cache
+    # No exposed ports — long-polling only
